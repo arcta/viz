@@ -1,0 +1,191 @@
+geoid,name,population
+4,"Afghanistan",28400000
+24,"Angola",12799293
+8,"Albania",3639453
+784,"United Arab Emirates",4798491
+32,"Argentina",40913584
+51,"Armenia",2967004
+10,"Antarctica",3802
+260,"Fr. S. Antarctic Lands",140
+36,"Australia",21262641
+40,"Austria",8210281
+31,"Azerbaijan",8238672
+108,"Burundi",8988091
+56,"Belgium",10414336
+204,"Benin",8791832
+854,"Burkina Faso",15746232
+50,"Bangladesh",156050883
+100,"Bulgaria",7204687
+44,"Bahamas",309156
+70,"Bosnia and Herz.",4613414
+112,"Belarus",9648533
+84,"Belize",307899
+68,"Bolivia",9775246
+76,"Brazil",198739269
+96,"Brunei",388190
+64,"Bhutan",691141
+72,"Botswana",1990876
+140,"Central African Rep.",4511488
+124,"Canada",33487208
+756,"Switzerland",7604467
+152,"Chile",16601707
+156,"China",1338612970
+384,"Côte d'Ivoire",20617068
+120,"Cameroon",18879301
+180,"Dem. Rep. Congo",68692542
+178,"Congo",4012809
+170,"Colombia",45644023
+174,"Comoros",752438
+132,"Cape Verde",429474
+188,"Costa Rica",4253877
+192,"Cuba",11451652
+-99,"N. Cyprus",265100
+196,"Cyprus",531640
+203,"Czech Rep.",10211904
+276,"Germany",82329758
+262,"Djibouti",516055
+212,"Dominica",72660
+208,"Denmark",5500510
+214,"Dominican Rep.",9650054
+12,"Algeria",34178188
+218,"Ecuador",14573101
+818,"Egypt",83082869
+232,"Eritrea",5647168
+724,"Spain",40525002
+233,"Estonia",1299371
+231,"Ethiopia",85237338
+246,"Finland",5250275
+242,"Fiji",944720
+238,"Falkland Is.",3140
+250,"France",64057792
+234,"Faeroe Is.",48856
+266,"Gabon",1514993
+826,"United Kingdom",62262000
+268,"Georgia",4615807
+288,"Ghana",23832495
+324,"Guinea",10057975
+270,"Gambia",1782893
+624,"Guinea-Bissau",1533964
+226,"Eq. Guinea",650702
+300,"Greece",10737428
+304,"Greenland",57600
+320,"Guatemala",13276517
+316,"Guam",178430
+328,"Guyana",772298
+344,"Hong Kong",7061200
+340,"Honduras",7792854
+191,"Croatia",4489409
+332,"Haiti",9035536
+348,"Hungary",9905596
+360,"Indonesia",240271522
+833,"Isle of Man",76512
+356,"India",1166079220
+372,"Ireland",4203200
+364,"Iran",66429284
+368,"Iraq",31129225
+352,"Iceland",306694
+376,"Israel",7233701
+380,"Italy",58126212
+388,"Jamaica",2825928
+400,"Jordan",6342948
+392,"Japan",127078679
+-99,"Siachen Glacier",6000
+398,"Kazakhstan",15399437
+404,"Kenya",39002772
+417,"Kyrgyzstan",5431747
+116,"Cambodia",14494293
+410,"Korea",48508972
+-99,"Kosovo",1804838
+414,"Kuwait",2691158
+418,"Lao PDR",6834942
+422,"Lebanon",4017095
+430,"Liberia",3441790
+434,"Libya",6310434
+144,"Sri Lanka",21324791
+426,"Lesotho",2130819
+440,"Lithuania",3555179
+442,"Luxembourg",491775
+428,"Latvia",2231503
+504,"Morocco",34859364
+498,"Moldova",4320748
+450,"Madagascar",20653556
+484,"Mexico",111211789
+807,"Macedonia",2066718
+466,"Mali",12666987
+104,"Myanmar",48137741
+499,"Montenegro",672180
+496,"Mongolia",3041142
+508,"Mozambique",21669278
+478,"Mauritania",3129486
+480,"Mauritius",1284264
+454,"Malawi",14268711
+458,"Malaysia",25715819
+516,"Namibia",2108665
+540,"New Caledonia",227436
+562,"Niger",15306252
+566,"Nigeria",149229090
+558,"Nicaragua",5891199
+528,"Netherlands",16715999
+578,"Norway",4676305
+524,"Nepal",28563377
+554,"New Zealand",4213418
+512,"Oman",3418085
+586,"Pakistan",176242949
+591,"Panama",3360474
+604,"Peru",29546963
+608,"Philippines",97976603
+598,"Papua New Guinea",6057263
+616,"Poland",38482919
+630,"Puerto Rico",3971020
+408,"Dem. Rep. Korea",22665345
+620,"Portugal",10707924
+600,"Paraguay",6995655
+275,"Palestine",4119083
+258,"Fr. Polynesia",287032
+634,"Qatar",833285
+642,"Romania",22215421
+643,"Russia",140041247
+646,"Rwanda",10473282
+732,"W. Sahara",-99
+682,"Saudi Arabia",28686633
+729,"Sudan",25946220
+728,"S. Sudan",10625176
+686,"Senegal",13711597
+239,"S. Geo. and S. Sandw. Is.",30
+90,"Solomon Is.",595613
+694,"Sierra Leone",6440053
+222,"El Salvador",7185218
+-99,"Somaliland",3500000
+706,"Somalia",9832017
+688,"Serbia",7379339
+678,"São Tomé and Principe",212679
+740,"Suriname",481267
+703,"Slovakia",5463046
+705,"Slovenia",2005692
+752,"Sweden",9059651
+748,"Swaziland",1123913
+760,"Syria",20178485
+148,"Chad",10329208
+768,"Togo",6019877
+764,"Thailand",65905410
+762,"Tajikistan",7349145
+795,"Turkmenistan",4884887
+626,"Timor-Leste",1131612
+780,"Trinidad and Tobago",1310000
+788,"Tunisia",10486339
+792,"Turkey",76805524
+158,"Taiwan",22974347
+834,"Tanzania",41048532
+800,"Uganda",32369558
+804,"Ukraine",45700395
+858,"Uruguay",3494382
+840,"United States",313973000
+860,"Uzbekistan",27606007
+862,"Venezuela",26814843
+704,"Vietnam",86967524
+548,"Vanuatu",218519
+882,"Samoa",219998
+887,"Yemen",23822783
+710,"South Africa",49052489
+894,"Zambia",11862740
+716,"Zimbabwe",12619600

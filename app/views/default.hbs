@@ -1,0 +1,24 @@
+{{{stream}}}
+<script>
+{{{js}}}
+(function(window) {
+    'use strict';
+
+    var VIZ = window.VIZ || {};
+
+    VIZ.render = VIZ.render || function(){}; 
+
+    VIZ.meta = {{{meta}}};
+    VIZ.data = {{{data}}};
+    VIZ.conf = {{{conf}}};
+
+    VIZ.id = '{{id}}';
+    VIZ.bookmark = {{bookmark}};
+
+    var draw = 'function' === typeof(VIZ[VIZ.meta['type']]) ?
+        VIZ[VIZ.meta['type']] : function(){};
+
+    VIZ.render(draw);
+
+})(window);
+</script>

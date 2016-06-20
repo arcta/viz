@@ -1,0 +1,47 @@
+{
+    "name": "viz",
+    "version": "0.0.0",
+    "author": {
+         "name": "Alexandra Arce",
+         "email": "arctalex@gmail.com"
+    },
+    "website":{
+         "url": "https://www.psi-sync.net"
+    },
+    "repository": {
+         "type": "git",
+         "url": "https://bitbucket.org/arcta/viz"
+    },
+    "private": true,
+    "dependencies": {
+        "express": "^4.13.4",
+        "simple-oauth2": "^0.7.0",
+
+        "express-handlebars": "*",
+        "serve-favicon": "*",
+        "serve-static": "*",
+        "express-session": "*",
+        "errorhandler": "*",
+        "underscore": "*",
+        "compression": "*",
+        "body-parser": "*",
+        "intel": "*",
+
+        "browserify": "*",
+        "watchify": "*",
+        "clean-css": "*",
+        "uglifyify": "*",
+
+        "python-shell": "*",
+        "clipboard": "*",
+        "node-horseman": "*",
+        "socket.io": "*",
+
+        "mysql": "*",
+        "mongodb": "*",
+        "elasticsearch": "*",
+        "redis": "*",
+        "connect-redis": "*",
+        "express-redis-cache": "*"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "description": "line-chart group",
+    "js": ["viz","legend","tooltip","color","utils","viz-line"],
+    "css": ["viz"],
+    "view": "default",
+    "layout": "default"
+}

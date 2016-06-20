@@ -1,0 +1,7 @@
+{
+    "description": "scatter-plot",
+    "js": ["viz","legend","tooltip","color","utils","viz-scatter"],
+    "css": ["viz"],
+    "view": "default",
+    "layout": "default"
+}

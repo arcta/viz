@@ -1,0 +1,7 @@
+{
+    "description": "area-chart stack",
+    "js": ["viz","legend","tooltip","color","utils","viz-area"],
+    "css": ["viz"],
+    "view": "default",
+    "layout": "default"
+}

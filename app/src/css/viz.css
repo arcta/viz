@@ -1,0 +1,226 @@
+
+@import url(//fonts.googleapis.com/css?family=Comfortaa);
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Comfortaa, sans-serif;
+    background-color: #ffffff; /* for screenshots */
+}
+
+svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Comfortaa, sans-serif;
+}
+
+circle {
+    shape-rendering: optimizeQuality;
+}
+
+
+.utils {
+    fill: lightgray;
+    shape-rendering: optimizeQuality;
+}
+
+.butt {
+    cursor: pointer;
+    stroke: gray;
+    fill: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.tooltip {
+    display: none;
+    pointer-events: none;
+    position: absolute;
+    stroke: none;
+}
+
+.tooltip rect {
+    fill: #black;
+    shape-rendering: optimizeQuality;
+}
+
+.tooltip path {
+    fill: #black;
+}
+
+.tooltip text {
+    font-size: .7em;
+    fill: white;
+}
+
+.tooltip-overlay {
+    stroke: none;
+    fill: none;
+    pointer-events: all;
+}
+
+.legend {
+    cursor: pointer;
+    text-anchor: start;
+}
+
+.legend-rect {
+    fill: white;
+    fill-opacity: .85;
+    /*stroke: black;
+    stroke-opacity: .2;
+    shape-rendering: crispEdges;*/
+}
+
+.utils-rect {
+    fill: white;
+    fill-opacity: .75;
+    stroke: none;
+}
+
+.frame {
+    stroke: none;
+    fill: white;
+}
+
+.screen {
+    stroke: none;
+    fill: white;
+}
+
+.ctrl path {
+    stroke: gray;
+    stroke-width: 2;
+    fill: none;
+    shape-rendering: crispEdges;
+}
+
+.axis path {
+    stroke: black;
+    fill: none;
+}
+
+#align line,
+.axis line {
+    stroke: black;
+    stroke-dasharray: 2,2;
+}
+
+#align line,
+.axis path,
+.axis line {
+    stroke-opacity: .3;
+    shape-rendering: crispEdges;
+}
+
+#pin {
+    stroke: gray;
+    shape-rendering: optimizeQuality;
+    stroke-width: 2;
+    fill: white;
+    opacity: .5;
+    display: none;
+}
+
+.z path {
+    display: none;
+}
+
+.z line {
+    stroke: white;
+    fill: white;
+    shape-rendering: crispEdges;
+}
+
+.zoom {
+    fill: none;
+    pointer-events: all;
+}
+
+.label,
+.z text,
+.axis text {
+    font-size: .7em;
+    fill: gray;
+}
+
+.axis-label {
+    font-size: .75em;
+    fill: gray;
+    text-anchor: end;
+}
+
+.xbox,
+.ybox {
+    fill: gray;
+    stroke: none;
+    fill-opacity: 0.05;
+}
+
+.xmean,
+.ymean {
+    fill: none;
+    stroke: white;
+    stroke-width: 3;
+    shape-rendering: crispEdges;
+}
+
+.title {
+    font-size: 0.85em;
+    fill: gray;
+    text-shadow: 1px 1px 1px white;
+}
+
+.line {
+    stroke-width: 1.5;
+    stroke-opacity: 0.75;
+    fill: none;
+}
+
+.area {
+    stroke: none;
+    fill-opacity: .5;
+}
+
+.hist {
+    cursor: pointer;
+    stroke: none;
+    opacity: 0.5;
+}
+
+.grad {
+    opacity: 0.5;
+}
+
+.cell {
+    stroke: white;
+    stroke-width: 0.1;
+    opacity: 0.9;
+}
+
+.cell:hover {
+    opacity: 1;
+}
+
+.land {
+    fill: lightgray;
+    stroke: none;
+}
+
+.cbsa,
+.county,
+.state,
+.country {
+    fill: none;
+    stroke: white;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
