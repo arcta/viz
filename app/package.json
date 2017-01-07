@@ -10,38 +10,29 @@
     },
     "repository": {
          "type": "git",
-         "url": "https://bitbucket.org/arcta/viz"
+         "url": "https://github.com/arcta/viz"
     },
     "private": true,
+    "scripts": {
+        "start": "node app.js"
+    },
     "dependencies": {
-        "express": "^4.13.4",
-        "simple-oauth2": "^0.7.0",
+        "express": "^4.14.0",
 
         "express-handlebars": "*",
         "serve-favicon": "*",
         "serve-static": "*",
-        "express-session": "*",
-        "errorhandler": "*",
-        "underscore": "*",
         "compression": "*",
         "body-parser": "*",
-        "intel": "*",
 
         "browserify": "*",
-        "watchify": "*",
         "clean-css": "*",
         "uglifyify": "*",
 
-        "python-shell": "*",
         "clipboard": "*",
+        "phantomjs-prebuilt": "*",
         "node-horseman": "*",
         "socket.io": "*",
-
-        "mysql": "*",
-        "mongodb": "*",
-        "elasticsearch": "*",
-        "redis": "*",
-        "connect-redis": "*",
-        "express-redis-cache": "*"
+        "redis": "*"
     }
 }

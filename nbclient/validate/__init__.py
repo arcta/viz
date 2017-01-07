@@ -1,2 +1,0 @@
-
-from .defaults import check

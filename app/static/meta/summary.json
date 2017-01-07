@@ -1,0 +1,14 @@
+{
+    "type":"summary",
+    "js":["viz","axes","tooltip","color","util","legend/simple","toolbox/all","charts/line"],
+    "css":["viz"],
+    "view":"summary",
+    "layout":"default",
+    "description":"DEFAULT: dataset summary",
+    "title":"DEFAULT: None",
+    "target":"DEFAULT: numeric accepts categoric",
+    "colormap":"DEFAULT: None custom palette list or dictionary",
+    "bins":"DEFAULT: 10",
+    "width":"DEFAULT: 100%",
+    "height":"DEFAULT: 500"
+}

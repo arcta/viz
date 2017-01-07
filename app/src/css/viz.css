@@ -1,6 +1,3 @@
-
-@import url(//fonts.googleapis.com/css?family=Comfortaa);
-
 * {
     box-sizing: border-box;
 }
@@ -10,8 +7,12 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: Comfortaa, sans-serif;
+    font-family: monospace, sans-serif;
     background-color: #ffffff; /* for screenshots */
+}
+
+section {
+    display: none;
 }
 
 svg {
@@ -19,7 +20,7 @@ svg {
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    font-family: Comfortaa, sans-serif;
+    font-family: monospace, sans-serif;
 }
 
 circle {
@@ -72,14 +73,6 @@ circle {
     text-anchor: start;
 }
 
-.legend-rect {
-    fill: white;
-    fill-opacity: .85;
-    /*stroke: black;
-    stroke-opacity: .2;
-    shape-rendering: crispEdges;*/
-}
-
 .utils-rect {
     fill: white;
     fill-opacity: .75;
@@ -87,25 +80,53 @@ circle {
 }
 
 .frame {
-    stroke: none;
-    fill: white;
+    shape-rendering: crispEdges;
+    stroke: white;
+    stroke-width: 14;
+    stroke-linecap: square;
+    fill: none;
 }
 
-.screen {
-    stroke: none;
-    fill: white;
-}
-
-.ctrl path {
+#ctrl path {
     stroke: gray;
     stroke-width: 2;
     fill: none;
+}
+
+#ctrl text {
+    font: .8em courier, monospace;
+    fill: lightgray;
+    cursor: pointer;
+    text-anchor: middle;
+}
+
+#ctrl text:hover {
+    fill: gray;
+}
+
+#group,
+#stack,
+#sorted,
+#absolute,
+#normalized {
     shape-rendering: crispEdges;
 }
+
+#averaged {
+    shape-rendering: optimizeQuality;
+}
+
 
 .axis path {
     stroke: black;
     fill: none;
+}
+
+.z text,
+.axis text {
+    font-family: monospace, sans-serif;
+    font-size: 1em;
+    fill: gray;
 }
 
 #align line,
@@ -130,6 +151,55 @@ circle {
     display: none;
 }
 
+#prompt {
+    width: 50%;
+    height: 100px;
+    margin: 10% auto;
+    padding: 10px 30px;
+    background: white;
+    border: 0 none;
+    border-radius: 16px 4px 16px 4px;
+    font: .8em monospace, sans-serif;
+    color: gray;
+}
+
+#prompt input {
+    width: 100%; height: 26px;
+    margin: 4px 0;
+    padding: 0 5px;
+    border: 2px lightgray solid;
+    border-radius: 4px;
+    font: 12px monospace, sans-serif;
+    color: black;
+}
+
+#prompt span {
+    display: block;
+    width: 40%; height: 24px;
+    float: right;
+    margin: 1px;
+    background: rgba(0,0,0,0.25);
+    border: 0 none;
+    border-radius: 16px 4px 16px 4px;
+    font: 1.25em monospace, sans-serif;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+#prompt span:hover {
+    background: rgba(0,0,0,0.75);
+    border-radius: 6px;
+}
+
+.prompt {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.5);
+}
+
 .z path {
     display: none;
 }
@@ -140,29 +210,85 @@ circle {
     shape-rendering: crispEdges;
 }
 
-.zoom {
+#SelectScreen {
+    cursor: crosshair;
+}
+
+#ZoomScreen rect,
+#SelectScreen rect {
     fill: none;
     pointer-events: all;
 }
 
-.label,
-.z text,
-.axis text {
+#SelectScreen path {
+    fill: gray;
+    fill-opacity: .1;
+    stroke: black;
+    stroke-dasharray: 2,2;
+    stroke-opacity: .3;
+    shape-rendering: crispEdges;
+}
+
+#InsightScreen rect {
+    fill: white;
+}
+
+#InsightScreen text {
+    fill: black;
+    cursor: pointer;
+    font-size: .8em;
+}
+
+#Info {
+    display: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    color: gray;
+    font-size: .85em;
+}
+
+#Info div {
+    padding: 5px 10% 0 10%;
+}
+
+#Info .ok {
+    text-align: center;
+    cursor: pointer;
+}
+
+#Legend {
+    margin: 16px 0;
+}
+
+#Legend .color {
+    display: inline-block;
+    width: 10px; height: 10px;
+    margin: 2px 10px 0 20px;
+    border: 0 none;
+    border-radius: 5px;
+    opacity: .5;
+}
+
+.label {
     font-size: .7em;
     fill: gray;
 }
 
 .axis-label {
-    font-size: .75em;
+    font-size: 9px;
     fill: gray;
+    stroke: none;
+}
+
+#xlabel {
     text-anchor: end;
 }
 
-.xbox,
-.ybox {
-    fill: gray;
-    stroke: none;
-    fill-opacity: 0.05;
+#ylabel {
+    text-anchor: start;
 }
 
 .xmean,
@@ -181,7 +307,7 @@ circle {
 
 .line {
     stroke-width: 1.5;
-    stroke-opacity: 0.75;
+    stroke-opacity: .75;
     fill: none;
 }
 
@@ -191,23 +317,26 @@ circle {
 }
 
 .hist {
+    shape-rendering: crispEdges;
     cursor: pointer;
     stroke: none;
-    opacity: 0.5;
+    opacity: .5;
 }
 
 .grad {
-    opacity: 0.5;
+    shape-rendering: crispEdges;
+    opacity: .5;
 }
 
 .cell {
-    stroke: white;
-    stroke-width: 0.1;
-    opacity: 0.9;
+    shape-rendering: crispEdges;
+    stroke: none;
 }
 
 .cell:hover {
-    opacity: 1;
+    stroke: black;
+    stroke-dasharray: 2,2;
+    stroke-opacity: .3;
 }
 
 .land {

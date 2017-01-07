@@ -1,9 +1,9 @@
 {
-    "description": "default viz properties",
+    "description": "default properties",
     "x": "Independent Variable",
     "y": "Response Variable",
     "z": "Parameter IF ANY (usually appears on the legend)",
-    "js": ["viz","legend","tooltip","color","utils"],
+    "js": ["viz","axes","tooltip","color","util","legend/all","toolbox/all","charts/scatter"],
     "css": ["viz"],
     "view": "default",
     "layout": "default"

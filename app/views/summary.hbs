@@ -1,4 +1,3 @@
-{{{ stream }}}
 <script>
 {{{ js }}}
 (function(window) {
@@ -13,10 +12,9 @@
     VIZ.id = '{{ id }}';
     VIZ.insights = {{{ insights }}};
 
-    var draw = 'function' === typeof(VIZ[VIZ.meta['type']]) ?
-        VIZ[VIZ.meta['type']] : function(){};
-
-    VIZ.render(draw);
+    if (VIZ.meta.target === 'numeric')
+        VIZ.render(VIZ.line);
+    //else VIZ.render(VIZ.bar);
 
 })(window);
 </script>

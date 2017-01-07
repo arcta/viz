@@ -12,7 +12,8 @@
             H = window.innerHeight,
             timer,
             tooltip = VIZ.canvas.append('g')
-                        .attr('class','tooltip');
+                        .attr('class','tooltip')
+                        .attr('transform','translate('+ [W,100] +')');
 
         tooltip.append('path')
             .attr('d','M-8 0 L8 0 L0 8 Z');
@@ -65,18 +66,16 @@
 
             tooltip
                 .style('display','block')
-            .transition()
-            .duration(100)
+            .transition().duration(100)
                 .attr('transform','translate('+ [X,Y] +')')
                 .style('opacity', 1);
         }
 
         function hide() {
             tooltip
-                .transition()
-                .duration(500)
+                .transition().duration(500)
                     .style('opacity', 0)
-                .each('end',
+                .on('end',
                     function() {
                         tooltip.style('display','none');
                     });
@@ -84,6 +83,7 @@
 
         VIZ.info = { show: show, hide: hide };
     };
+
 
     window.VIZ = VIZ;
 })(window);

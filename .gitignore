@@ -2,12 +2,23 @@
 ### ignore local configuration and framework
 ########################################################################
 
+app/config.json
 app/node_modules
+app/npm-debug.log
+
+app/static/*.html
 
 **/*.pyc
 **/__pycache__
 **/.Rhistory
 **/.ipynb_checkpoints
+
+# setuptools distribution folder
+/dist/
+
+# python egg metadata, regenerated from source files by setuptools
+/*.egg-info
+
 
 ########################################################################
 ### ignore anything below

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+########################################################################
+### save notebook as static html
+### parameters: $1 destination folder $2 notebook
+########################################################################
+if ! [ -d ~/${1} ]; then
+    mkdir ~/${1}
+fi
+
+if [ -f ~/${2}.ipynb ]; then
+    cd ~/${1}
+
+    jupyter nbconvert --to html ~/${2}.ipynb
+    mv ~/${2}.html index.html
+
+    vizurl=$(grep -Eo 'https*://[a-z0-9.-\:\/]*/d3/[a-z0-9-]*' index.html)
+    for url in $vizurl; do
+        b=$(basename $url)
+        curl -o ~/${1}/d3-$b.html $url
+        sed -i "s/d3\/${b}/d3-${b}.html/g" index.html
+    done
+    sed -i -r "s/https?:\/\/[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{4}\///g" index.html
+
+    echo "path: ${1}/index.html"
+else
+    echo "Invalid path: file ~/${2}.ipynb does not exist."
+fi

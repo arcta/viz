@@ -1,40 +1,32 @@
+'use strict';
+
 /**********************************************************************
  * DEPENDENCIES *
  **********************************************************************/
-var express = require('express'),
-    http = require('http'),
-    path = require('path'),
-    app = express(),
+const express = require('express'),
+      http = require('http'),
+      path = require('path'),
+      app = express(),
 
-    env = process.env,
+      config = require('./local/config'),
+      logger = require('./local/log'),
+      port = config.projectPort('viz'),
 
-    config = require(env.HOME +'/project/utilities/app/config'),
-    logger = require(env.HOME +'/project/utilities/app/log'),
+      bodyParser = require('body-parser'),
+      compress = require('compression'),
+      statics = require('serve-static'),
+      favicon = require('serve-favicon'),
 
-    crypto = require('crypto'),
-    fs = require('fs'),
+      hbs = require('express-handlebars'),
 
-    errorHandler = require('errorhandler'),
-    bodyParser = require('body-parser'),
-    compress = require('compression'),
-    static = require('serve-static'),
-    favicon = require('serve-favicon'),
+      server = http.createServer(app),
+      io = require('socket.io')(server);
 
-    hbs = require('express-handlebars'),
-
-    project = __dirname.split('/')[4],
-    port = config.projectPort(__dirname),
-
-    server = http.createServer(app),
-    io = require('socket.io')(server),
-    redis = require('redis').createClient,
-    pub = redis(config.NODE_REDIS_PORT, 'localhost', { auth_pass:config.NODE_REDIS_PASS }),
-    sub = redis(config.NODE_REDIS_PORT, 'localhost', { auth_pass:config.NODE_REDIS_PASS });
-
+config.projectConf('viz');
 logger.log(__dirname, 'ALL');
 
 app.use(favicon(path.join(__dirname, 'static/favicon.png')));
-app.use(static(path.join(__dirname, 'static')));
+app.use(statics(path.join(__dirname, 'static')));
 app.use(compress());
 
 app.engine('.hbs', hbs({ extname: '.hbs' }));
@@ -43,10 +35,19 @@ app.set('view engine', '.hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
 /**********************************************************************
  * MODELS *
  **********************************************************************/
-var VIZ = require('./viz');
+const VIZ = require('./models/'+ (config.VIZ_MODEL || 'redis'));
+VIZ.pubsub(io);
 
 /**********************************************************************
  * ROUTES *
@@ -58,74 +59,29 @@ app.get('/', function(req, res, next) {
 app.get('/meta/:type', VIZ.meta);
 app.get('/meta', VIZ.meta);
 
-app.get('/static/:id/:conf', VIZ.get);
-app.get('/static/:id', VIZ.get);
-
 app.get('/png/:id/:conf', VIZ.png);
 app.get('/png/:id', VIZ.png);
 
-app.get('/stream/:id', VIZ.stream);
-app.get('/filter/:id', VIZ.filter);
+app.get('/d3/:id/:conf', VIZ.d3);
+app.get('/d3/:id', VIZ.d3);
 
-app.get('/sample', VIZ.sample);
-
-app.post('/static', VIZ.put);
-app.post('/stream', VIZ.register);
-app.post('/conf', VIZ.conf);
-
+app.post('/', VIZ.put);
 
 /**********************************************************************
  * EXCEPTIONS *
  **********************************************************************/
 app.use(function(req, res, next){
-    res.status(404);
-    res.sendFile(__dirname +'/static/shared-assets/html/404.html');
+    res.sendStatus(404);
 });
 
 app.use(function(err, req, res, next){
-    res.status(err.status || 500);
-    res.sendFile(__dirname +'/static/shared-assets/html/500.html');
+    res.sendStatus(err.status || 500);
 });
-
-/**********************************************************************
- * PUBSUB *
- **********************************************************************/
-sub.on('subscribe', function(channel, count) {
-    logger.app.info('SUB: '+ channel);
-});
-
-sub.on('error', function(err) {
-    logger.app.error('SUB: '+ err);
-});
-
-sub.subscribe('sample-io');
-
-io.sockets.on('connection', function(socket) {
-    function follow(channel, message) {
-        socket.emit(channel, message);
-    }
-    sub.on('message', follow);
-    socket.on('disconnect', function(){
-        sub.removeListener('message', follow);
-    });
-});
-
-var timer;
-function stream() {
-    clearTimeout(timer);
-    function callback(data) {
-        pub.publish('sample-io', JSON.stringify(data[0]));
-        timer = setTimeout(stream, 1000 + 5000*Math.random());
-    }
-    VIZ.sampleIO(callback);
-}
-timer = setTimeout(stream, 1000 + 5000*Math.random());
 
 /**********************************************************************
  * RUN *
  **********************************************************************/
 server
     .listen(port, function(err,data) {
-        logger.app.info('Started SERVER for projects/'+ project
-                            +'/app on PORT '+ port +' '+ new Date());
+        logger.app.info('Started on PORT '+ port +' '+ new Date());
     });
