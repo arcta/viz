@@ -25,7 +25,7 @@
     "title":"DEFAULT: None",
     "colormap":"DEFAULT: None custom palette list or dictionary by `z` index / values",
     "fit":"DEFAULT: None [`Linear`]",
-    "bins":"DEFAULT: 10 for numeric `z` parameter histogram",
+    "zbins":"DEFAULT: 10 for numeric `z` parameter histogram",
     "transition":"DEFAULT: 1000 ms duration of animated transitions",
     "refresh":"DEFAULT: None refresh period in seconds for dynamic data-source",
     "window":"DEFAULT: 1 minute time-window in minutes keep in display for streaming data-source",

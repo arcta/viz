@@ -162,6 +162,9 @@
             d3.selectAll(canvas)
                 .remove();
 
+            d3.select('#Info')
+                .remove();
+
             VIZ.evaluate();
             VIZ.data = VIZ.data || [];
             VIZ.conf['size'] = [ window.innerWidth, window.innerHeight ];

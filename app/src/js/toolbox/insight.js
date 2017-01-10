@@ -6,25 +6,10 @@
     /******************************************************************
         attached list of saved insights ( bookmarked settings )
      ******************************************************************/
-    function action() {
-        VIZ.conf['toolbox'].map(
-            function(id){
-                if (id !== 'Insight')
-                    d3.select('#'+ id)
-                        .style('display','none');
-            });
-    }
-
     function show(d) {
         VIZ.target(d);
         if (typeof(VIZ.reset) ==='function') VIZ.reset();
         VIZ.InsightCTRL.deactivate();
-        VIZ.conf['toolbox'].map(
-            function(id){
-                if (id !== 'Insight')
-                    d3.select('#'+ id)
-                        .style('display','block');
-            });
     }
 
     function render() {
@@ -62,12 +47,12 @@
     }
 
     function check() {
-        return (VIZ.static);
+        return (VIZ.static && (!VIZ.published || Object.keys(VIZ.insights).length > 0));
     }
 
     VIZ.InsightCTRL = new VIZ.Control('Insight','Show saved markers',
                             true,   //has screen
-                            action,
+                            null,   //no action
                             null,   //default mouse-over
                             null,   //default mouse-out
                             render,

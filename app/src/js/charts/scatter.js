@@ -12,7 +12,7 @@
                     ['Reset','Select','Marker','Image','Insight'];
 
         VIZ.defaults['r'] = VIZ.meta['r'] || 5;
-        VIZ.defaults['zbins'] = VIZ.meta['bins'] || 10;
+        VIZ.defaults['zbins'] = VIZ.meta['zbins'] || 10;
 
         VIZ.defaults['scale'] = 1;
         VIZ.defaults['translate'] = [0,0];
@@ -84,9 +84,8 @@
         }
 
         function info(d) {
-            var text, X, Y;
-
-            text = (VIZ.meta['xlabel'] || VIZ.meta['x']) +': '+ VIZ.format('xformat')(d.x) +'\n'+
+            var X, Y,
+                text = (VIZ.meta['xlabel'] || VIZ.meta['x']) +': '+ VIZ.format('xformat')(d.x) +'\n'+
                    (VIZ.meta['ylabel'] || VIZ.meta['y']) +': '+ VIZ.format('yformat')(d.y) +
                 ('z' in VIZ.meta ? '\n'+ (VIZ.meta['zlabel'] || VIZ.meta['z']) +': '+ VIZ.format('zformat')(d.z) : '');
 
@@ -150,7 +149,7 @@
             return 'translate('+ [VIZ.x(d.x), VIZ.y(d.y)] +')';
         }
 
-        function overlay() {console.log('!!!');
+        function overlay() {
             var voronoi = d3.voronoi()
                 .x(function(d){ return VIZ.x(d.x); })
                 .y(function(d){ return VIZ.y(d.y); })
@@ -322,14 +321,14 @@
                     .append('div').html('On the legend: '+
                         (VIZ.meta.zlabel || VIZ.meta.z));
 
-                var info = d3.select('#Legend').selectAll('.legend')
+                var desc = d3.select('#Legend').selectAll('.legend')
                                 .data(VIZ.conf.zdomain).enter()
                                     .append('div');
-                info.append('span')
+                desc.append('span')
                     .attr('class','color')
                     .style('background', color);
 
-                info.append('span')
+                desc.append('span')
                     .html(function(d){ return labels(d); });
 
             } else {

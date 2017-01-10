@@ -25,7 +25,7 @@
             .attr('transform','translate(35,-10)')
             .attr('text-anchor','middle')
             .attr('dy','.25em')
-            .text('[z]')
+            .text(VIZ.meta.z ? '[z]':'')
             .on(_IN,
                 function() {
                     VIZ.info.show(VIZ.meta.zlabel || VIZ.meta.z, [

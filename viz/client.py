@@ -126,7 +126,7 @@ class VizNotebook:
 
 
 def main():
-    print(config.get('PROJECT'))
+    nbv = VizNotebook(dev=True)
 
 
 if  __name__ =='__main__':

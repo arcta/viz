@@ -14,7 +14,6 @@
         VIZ.defaults['scale'] = 1;
 
         if (!VIZ.meta.z) {
-            VIZ.meta.z = 'density';
             VIZ.defaults['aggr'] = 'sum';
             VIZ.meta.summary.z = { type:'numeric' };
 
@@ -118,7 +117,7 @@
 
                                 text =  (VIZ.meta['xlabel'] || VIZ.meta['x']) +': '+ VIZ.format('xformat')(b.x) +'\n'+
                                         (VIZ.meta['ylabel'] || VIZ.meta['y']) +': '+ VIZ.format('yformat')(b.y) +'\n'+
-                                        (VIZ.meta['zlabel'] || VIZ.meta['z']) +': '+ VIZ.format('zformat')(b.z);
+                                        (VIZ.meta['zlabel'] || VIZ.meta['z'] || 'density') +': '+ VIZ.format('zformat')(b.z);
 
                                 X = VIZ.margin.left + VIZ.x(b.x) -12;
                                 Y = VIZ.margin.top + VIZ.y(b.y);
@@ -217,15 +216,15 @@
 
             if (!legend) {
                 legend = VIZ.legend();
-                if ('mean' === VIZ.conf['aggr'])
+                if ('mean' === VIZ.conf['aggr']) {
                     d3.select('#Legend')
                         .append('div').html('On the legend: '+
                             (VIZ.meta.zlabel || VIZ.meta.z) +' bin average');
-                else
+                } else {
                     d3.select('#Legend')
                         .append('div').html('On the legend: '+
                             (VIZ.meta.zlabel || 'density'));
-
+                }
                 legend = VIZ.numericParameter(legend, color, select, deselect);
             }
             legend.transition();
