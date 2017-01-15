@@ -6,7 +6,7 @@ try:
 
 except ImportError:
     cnf = {
-        'REDIS_HOST':'localhost',
+        'REDIS_HOST':'redis',
         'REDIS_PORT': 6379,
         'NODEIP':'0.0.0.0',
         'PROTOCOL':'http'

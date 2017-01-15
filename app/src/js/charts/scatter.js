@@ -8,8 +8,8 @@
             configuration
          **************************************************************/
         VIZ.conf['toolbox'] = VIZ.published ?
-                    ['Reset','Select','Image','Insight']:
-                    ['Reset','Select','Marker','Image','Insight'];
+                    ['Reset','Select','Insight']:
+                    ['Reset','Select','Marker','Insight'];
 
         VIZ.defaults['r'] = VIZ.meta['r'] || 5;
         VIZ.defaults['zbins'] = VIZ.meta['zbins'] || 10;

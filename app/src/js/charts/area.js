@@ -8,8 +8,8 @@
             configuration
          **************************************************************/
         VIZ.conf['toolbox'] = VIZ.published ?
-                    ['Reset','Select','Image','Insight']:
-                    ['Reset','Select','Marker','Image','Insight'];
+                    ['Reset','Select','Insight']:
+                    ['Reset','Select','Marker','Insight'];
 
         VIZ.defaults['mode'] = VIZ.meta.mode || 'absolute';
         VIZ.defaults['interpolate'] = VIZ.meta.interpolate || 'Linear';

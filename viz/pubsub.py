@@ -1,6 +1,7 @@
 #!/usr/bin/env
 
 import os
+import re
 import sys
 import json
 import time
@@ -11,19 +12,26 @@ from IPython.core.display import display, HTML
 from viz import config, client, validate, transform, request
 
 
-if config.get('REDIS_PASS'):
-    red = redis.StrictRedis(host=config.get('REDIS_HOST'),
-                            port=config.get('REDIS_PORT'),
-                            password=config.get('REDIS_PASS'))
-else:
-    red = redis.StrictRedis()
-pubsub = red.pubsub()
-
-
 class VizNotebook(client.VizNotebook):
     '''
     using redis pubsub as data-source
     '''
+    def __init__(self, host = None, dev = False, redis_host = None, redis_port = 6379):
+        super(VizNotebook, self).__init__(host = host, dev = dev)
+
+        if redis_host != None:
+            red = redis.StrictRedis(host=redis_host,
+                                    port=redis_port)
+
+        elif config.get('REDIS_PASS'): # default local conf
+            red = redis.StrictRedis(host=config.get('REDIS_HOST'),
+                                    port=config.get('REDIS_PORT'),
+                                    password=config.get('REDIS_PASS'))
+        else: # default container
+            red = redis.StrictRedis(host='redis')
+
+        self.pubsub = red.pubsub()
+
 
     def stream(self, channel, **kwargs):
         '''
@@ -31,15 +39,20 @@ class VizNotebook(client.VizNotebook):
         using REDIS pubsub
         '''
         meta = json.loads(request.get('%s/meta/%s' % (self.HOST, kwargs['type'])))
-        meta['host'] = '%s://%s' % (config.get('PROTOCOL'),config.get('NODEIP'))
+        match = re.match('(https?://.*)/([^/]+)', channel)
+        if match != None:
+            meta['host'] = match.group(1)
+            channel = match.group(2)
+        else:
+            meta['host'] = '%s://%s' % (config.get('PROTOCOL'), config.get('NODEIP'))
         meta = validate.check(kwargs, meta)
         meta['flow'] = 'stream'
         meta['source'] = channel
         meta['dev'] = self.DEV
         if self.DEV: print('VIZ listening %s @ %s' % (channel, meta['host']))
 
-        pubsub.subscribe(channel)
-        for message in pubsub.listen():
+        self.pubsub.subscribe(channel)
+        for message in self.pubsub.listen():
             if message['type'] == 'message':
                 if self.DEV: print(message)
                 data = json.loads(message['data'].decode())
@@ -48,7 +61,7 @@ class VizNotebook(client.VizNotebook):
                 data['timestamp'] = time.time()
                 data = transform.filters([data], meta)
                 meta['summary'] = transform.summary(data, meta)
-                pubsub.unsubscribe(channel)
+                self.pubsub.unsubscribe(channel)
                 return self.iframe(data, meta)
 
 
@@ -66,7 +79,8 @@ class VizNotebook(client.VizNotebook):
         path_notebook = kwargs['path_notebook']
 
         script = __file__.replace('pubsub.py','publish')
-        proc = subprocess.Popen([script, str(path_publish), str(path_notebook)], stdout=subprocess.PIPE)
+        proc = subprocess.Popen([script, str(path_publish), str(path_notebook)],
+                                        stdout = subprocess.PIPE)
         out, err = proc.communicate()
 
         if err != None:
@@ -76,12 +90,12 @@ class VizNotebook(client.VizNotebook):
 
 
 def main():
-    pubsub.subscribe('sample-io')
-    for message in pubsub.listen():
+    test = VizNotebook()
+    test.pubsub.subscribe('sample-io')
+    for message in test.pubsub.listen():
         if message['type'] == 'message':
             print(message)
-            pubsub.unsubscribe('sample-io')
-
+            test.pubsub.unsubscribe('sample-io')
 
 
 if  __name__ =='__main__':

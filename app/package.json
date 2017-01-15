@@ -24,14 +24,13 @@
         "serve-static": "*",
         "compression": "*",
         "body-parser": "*",
+        "intel":"*",
 
         "browserify": "*",
         "clean-css": "*",
         "uglifyify": "*",
 
         "clipboard": "*",
-        "phantomjs-prebuilt": "*",
-        "node-horseman": "*",
         "socket.io": "*",
         "redis": "*"
     }

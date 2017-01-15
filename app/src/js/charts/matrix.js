@@ -8,8 +8,8 @@
             configuration
          **************************************************************/
         VIZ.conf['toolbox'] = VIZ.published ?
-                    ['Reset','Zoom','Image','Insight']:
-                    ['Reset','Zoom','Marker','Image','Insight'];
+                    ['Reset','Zoom','Insight']:
+                    ['Reset','Zoom','Marker','Insight'];
 
         VIZ.defaults['scale'] = 1;
 

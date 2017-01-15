@@ -59,8 +59,8 @@ app.get('/', function(req, res, next) {
 app.get('/meta/:type', VIZ.meta);
 app.get('/meta', VIZ.meta);
 
-app.get('/png/:id/:conf', VIZ.png);
-app.get('/png/:id', VIZ.png);
+//app.get('/png/:id/:conf', VIZ.png);
+//app.get('/png/:id', VIZ.png);
 
 app.get('/d3/:id/:conf', VIZ.d3);
 app.get('/d3/:id', VIZ.d3);

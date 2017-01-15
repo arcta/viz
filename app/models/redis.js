@@ -13,9 +13,9 @@ const PROJECT = 'viz',
       red = require('../local/redis').client(),
       sub = require('../local/redis').client(),
 
+      //Phantom = require('node-horseman'),
       Bundler = require('browserify'),
-      CSS = require('clean-css'),
-      Phantom = require('node-horseman');
+      CSS = require('clean-css');
 
 config.projectConf('viz');
 logger.log(__dirname, 'ALL');
@@ -175,6 +175,7 @@ exports.d3 = function(req, res, next) {
 
 
 exports.png = function(req, res, next) {
+/*
     let id = req.params.id,
         conf = req.params.conf,
         port = config.projectPort('viz'),
@@ -203,5 +204,5 @@ exports.png = function(req, res, next) {
                 logger.app.error(err);
             })
         .close();
+*/
 };
-

@@ -9,4 +9,4 @@ try {
 }
 
 exports.client = redis.client ||
-    function(){ return redis(6379, 'localhost') };
+    function(){ return redis(6379,'redis') };
