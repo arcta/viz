@@ -12,12 +12,12 @@ Supported data sources:
 
 Dynamic & stream are intended for monitoring and saving static (data) snapshots for insights.
 
-Install with `pip istall -e .` from the repository folder.
+Install python client with ` pip istall -e . ` from the repository folder.
 
 ```python
 # use local file system to store compiled visuals
 from viz import local
-viz = local.VizNotebook('http://192.168.1.145:4006')
+viz = local.VizNotebook('http://www.arcta.me/projects/viz')
 ```
 
 
@@ -296,7 +296,7 @@ viz.dynamic('http://192.168.1.145:4004/sample/100', type='area', height=350, wid
 ```python
 # use redis pubsub to stream data
 from viz import pubsub
-viz = pubsub.VizNotebook('http://192.168.1.145:4006')
+viz = pubsub.VizNotebook('http://www.arcta.me/projects/viz')
 ```
 
 
