@@ -37,8 +37,18 @@ class VizNotebook(client.VizNotebook):
             if self.DEV: print(line)
 
 
+    def phoria(self, data, **kwargs):
+        '''
+        quick adaptation of Phoria JS library
+        for rotating 3d view
+        '''
+        kwargs['type'] = 'phoria'
+        return self.static(data, **kwargs)
+
+
 def main():
     nbv = VizNotebook(dev=True)
+    #nbv.publish(path_publish='projects/viz/app/static/examples/phoria', path_notebook='projects/viz/examples/PhoriaJS')
 
 
 if  __name__ =='__main__':
