@@ -43,6 +43,9 @@ class VizNotebook(client.VizNotebook):
         for rotating 3d view
         '''
         kwargs['type'] = 'phoria'
+        if 'seg'  not in kwargs: kwargs['seg'] = False
+        if 'axes' not in kwargs: kwargs['axes'] = True
+        if 'grid' not in kwargs: kwargs['grid'] = 10
         return self.static(data, **kwargs)
 
 

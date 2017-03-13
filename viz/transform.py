@@ -31,8 +31,9 @@ def jstimestamp(t):
 
 def filters(data, meta):
     '''
-    filter in only fields requested in meta
+    keep only fields requested in meta
     transform to canonical X,Y,Z
+    keep special label `seg` reserved for colormap
     '''
     filtered = []
     Z = ('z' in meta)
@@ -62,13 +63,13 @@ def filters(data, meta):
                 V[a] = label
 
                 if Z: meta['z'] = zlabel
-                meta['switch'] = False
 
     for d in data:
         D = {}
         if 'x' in meta: D['x'] = d[V['x']]
         if 'y' in meta: D['y'] = d[V['y']]
         if 'z' in meta: D['z'] = d[meta['z']]
+        if 'seg' in meta and meta['seg']: D['seg'] = d[meta['seg']]
         filtered.append(D)
 
     return filtered

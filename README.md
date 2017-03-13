@@ -24,7 +24,7 @@ viz = local.VizNotebook('http://www.arcta.me/projects/viz')
 ```python
 import numpy
 import pandas
-from datetime import datetime 
+from datetime import datetime
 from time import time
 
 # generate some data
@@ -320,6 +320,7 @@ More examples @ <a href="http://www.arcta.me/projects/viz/">Project-Home</a>:
 * <a href="http://www.arcta.me/projects/viz/examples/scatter/index.html">Scatter</a>
 * <a href="http://www.arcta.me/projects/viz/examples/line/index.html">Timeseries</a>
 * <a href="http://www.arcta.me/projects/viz/examples/area/index.html">Area</a>
+* <a href="http://www.arcta.me/projects/viz/examples/phoria/index.html">Interactive 3D-view with Phoria</a>
 
 
 ```python
@@ -327,7 +328,7 @@ More examples @ <a href="http://www.arcta.me/projects/viz/">Project-Home</a>:
 viz.publish(path_publish='projects/viz/app/static', path_notebook='projects/viz/README')
 ```
 
-#### Run in Docker Container 
+#### Run in Docker Container
 
 To run viz-server in a docker container:
 <pre>
