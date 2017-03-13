@@ -1,7 +1,10 @@
 
 # Interactive Visualization ( D3 ) in Jupyter Notebook
 
-This project is integrated with <a href="https://github.com/arcta/server-setup">Data-Science R&amp;D on Ubuntu</a> and comes as a part of a server setup. Main focus on the data exploration process itself; identifying scenarios where interactivity has actual advantage for finding insights. Main objective is support for interactive visuals embedded in the notebook with ability to save insights as deep-links.
+This repository contains examples of using interactive visuals embedded in Jupyter notebooks, it is not a library of any kind.
+Main focus on the data exploration process itself; identifying scenarios where interactivity has actual advantage for finding insights.
+Main objective is support for creation/publishing of custom interactive visuals with ability to save insights as deep-links.
+This project is integrated with <a href="https://github.com/arcta/server-setup">Data-Science R&amp;D on Ubuntu</a> and comes as a part of a server setup.
 
 While in development contents are stored in redis; when the notebook published all included visuals compiled and stored in redis, file-system, s3/gc bucket, memcache, etc.
 
@@ -312,6 +315,28 @@ viz.stream('http://192.168.1.107:4017/sample-io', type='line', height=350, width
 ```
 
 ![title](Screenshot-6.png)
+
+
+
+```python
+# Bring 3D into the notebook with Phoria JS
+df = pandas.DataFrame(numpy.zeros((200, 3)), columns=list('ABC'))
+df['A'] += df.index.map(lambda i: 10 * i * numpy.cos(0.1 * i))
+df['B'] += df.index.map(lambda i: 100 * i * numpy.sin(0.1 * i))
+df['C'] += df.index.map(lambda i: 1000 * numpy.cos(0.01 * i))
+
+viz.phoria(df.to_json(orient='records'),
+           x='A',
+           y='B',
+           z='C',
+           title='Interactive 3D View',
+           rotate = False,
+           mode = 'line')
+```
+
+![title](Screenshot-7.png)
+
+
 
 With non-static data Marker tool creates static data snapshots.
 

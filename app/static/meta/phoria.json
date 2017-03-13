@@ -15,7 +15,7 @@
     "title":"DEFAULT: None",
     "mode":"DEFAULT: scatter [`scatter`,`line`]",
     "stroke":"DEFAULT: 2",
-    "rotate":"DEFAULT: true",
+    "rotate":"DEFAULT: true [ false, specific angle(X,Y,Z) ]",
     "colormap":"DEFAULT: None or dictionary [ by seg value if `seg` is set ]",
     "grid":"DEFAULT: 10 [ integer or `false` to hide ]",
     "axes":"DEFAULT: true [ show axes ]",

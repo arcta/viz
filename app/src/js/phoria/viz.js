@@ -1,6 +1,8 @@
 (function(window) {
     'use strict';
-
+    /******************************************************************
+     * quick example for now TODO: attach common toolbox
+     ******************************************************************/
     var scene,
         canvas,
         requestAnimFrame =  window.requestAnimationFrame ||
@@ -150,7 +152,7 @@
                     edges: plane.edges,
                     polygons: plane.polygons,
                     style: {
-                        color: [i === 0 ? 200 : 0, i === 1 ? 200 : 0, i === 2 ? 200 : 0],
+                        color: [i === 0 ? 200:100, i === 1 ? 200:100, i === 2 ? 200:100],
                         drawmode:'wireframe',
                         shademode:'plain',
                         linewidth: 0.15,
@@ -167,7 +169,7 @@
             showAxis: !!VIZ.meta.axes
         });
 
-        var rotate = 'rotate' in VIZ.meta ? VIZ.meta.rotate : true,
+        var rotate = 'rotate' in VIZ.meta ? VIZ.meta.rotate === true : true,
             mouse = rotate ? false : Phoria.View.addMouseEvents(canvas);
 
         var rot = {
@@ -177,17 +179,23 @@
             ratio: 0.1
         };
 
-        var pause = false;
+        var pause = false, R = [0,0,0];
+        if (Array.isArray(VIZ.meta.rotate)) {
+            graph.rotateX(VIZ.meta.rotate[0]).rotateY(VIZ.meta.rotate[1]).rotateZ(VIZ.meta.rotate[2]);
+        }
+
         var fnAnimate = function() {
             if (!mouse) {
-                graph.rotateY(Phoria.RADIANS * rot.ratio).rotateX(Phoria.RADIANS * rot.ratio).rotateZ(Phoria.RADIANS * rot.ratio);
+                var r = Phoria.RADIANS * rot.ratio;
+                R = [r, r, r];
 
             } else {
                 rot.nowx += (rot.velx = (mouse.velocityV - rot.x - rot.nowx) * rot.ratio);
                 rot.nowy += (rot.vely = (rot.y - rot.nowy) * rot.ratio);
                 rot.nowz += (rot.velz = (mouse.velocityH - rot.z - rot.nowz) * rot.ratio);
-                graph.rotateX(-rot.velx*Phoria.RADIANS).rotateY(-rot.vely*Phoria.RADIANS).rotateZ(-rot.velz*Phoria.RADIANS);
+                R = [-rot.velx*Phoria.RADIANS, -rot.vely*Phoria.RADIANS, -rot.velz*Phoria.RADIANS];
             }
+            graph.rotateX(R[0]).rotateY(R[1]).rotateZ(R[2]);
             scene.modelView();
             renderer.render(scene);
 
@@ -213,13 +221,13 @@
         document.getElementById('title').innerHTML  = VIZ.meta.title;
 
         document.getElementById('xaxis').innerHTML = 'X: ['+ (VIZ.meta.xlabel || VIZ.meta.x)
-            +'] domain ['+ sformat(S.x.domain) +'] grid: '+ sformat([(S.x.domain[1] - S.x.domain[0])/5]);
+            +'] domain ['+ sformat(S.x.domain) +'] grid: '+ sformat([(S.x.domain[1] - S.x.domain[0])/VIZ.meta.grid]);
 
         document.getElementById('yaxis').innerHTML = 'Y: ['+ (VIZ.meta.ylabel || VIZ.meta.y)
-            +'] domain ['+ sformat(S.y.domain) +'] grid: '+ sformat([(S.y.domain[1] - S.y.domain[0])/5]);
+            +'] domain ['+ sformat(S.y.domain) +'] grid: '+ sformat([(S.y.domain[1] - S.y.domain[0])/VIZ.meta.grid]);
 
         document.getElementById('zaxis').innerHTML = 'Z: ['+ (VIZ.meta.zlabel || VIZ.meta.z)
-            +'] domain ['+ sformat(S.z.domain) +'] grid: '+ sformat([(S.z.domain[1] - S.z.domain[0])/5]);
+            +'] domain ['+ sformat(S.z.domain) +'] grid: '+ sformat([(S.z.domain[1] - S.z.domain[0])/VIZ.meta.grid]);
 
         document.getElementById('origin').innerHTML = 'O: ['+ sformat(C) +']';
 
