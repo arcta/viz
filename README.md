@@ -1,12 +1,9 @@
 
-# Interactive Visualization ( D3 ) in Jupyter Notebook
+# Interactive Visualization with Deep Links
 
-This repository contains examples of using interactive visuals embedded in Jupyter notebooks, it is not a library of any kind.
-Main focus on the data exploration process itself; identifying scenarios where interactivity has actual advantage for finding insights.
-Main objective is support for creation/publishing of custom interactive visuals with ability to save insights as deep-links.
-This project is integrated with <a href="https://github.com/arcta/server-setup">Data-Science R&amp;D on Ubuntu</a> and comes as a part of a server setup.
+This project uses Data-Science R&D on Ubuntu environment. Main objective is support for interactive visuals embedded in the notebook with ability to save insights as deep-links.
 
-While in development contents are stored in redis; when the notebook published all included visuals compiled and stored in redis, file-system, s3/gc bucket, memcache, etc.
+Contents are stored in redis while the notebook is under development; when the notebook published all included visuals compiled as html-bundle and stored in redis, file-system, s3/gc bucket, memcache, etc.
 
 Supported data sources:
 * static ( json )
@@ -20,7 +17,7 @@ Install python client with ` pip istall -e . ` from the repository folder.
 ```python
 # use local file system to store compiled visuals
 from viz import local
-viz = local.VizNotebook('http://www.arcta.me/projects/viz')
+viz = local.VizNotebook()
 ```
 
 
@@ -299,7 +296,7 @@ viz.dynamic('http://192.168.1.145:4004/sample/100', type='area', height=350, wid
 ```python
 # use redis pubsub to stream data
 from viz import pubsub
-viz = pubsub.VizNotebook('http://www.arcta.me/projects/viz')
+viz = pubsub.VizNotebook()
 ```
 
 
@@ -340,12 +337,12 @@ viz.phoria(df.to_json(orient='records'),
 
 With non-static data Marker tool creates static data snapshots.
 
-More examples @ <a href="http://www.arcta.me/projects/viz/">Project-Home</a>:
-* <a href="http://www.arcta.me/projects/viz/examples/matrix/index.html">Matrix</a>
-* <a href="http://www.arcta.me/projects/viz/examples/scatter/index.html">Scatter</a>
-* <a href="http://www.arcta.me/projects/viz/examples/line/index.html">Timeseries</a>
-* <a href="http://www.arcta.me/projects/viz/examples/area/index.html">Area</a>
-* <a href="http://www.arcta.me/projects/viz/examples/phoria/index.html">Interactive 3D-view with Phoria</a>
+Examples @ <a href="http://www.arcta.me/sandbox/viz/">Project-Home</a>:
+* <a href="http://www.arcta.me/sandbox/viz/examples/Matrix.html">Matrix</a>
+* <a href="http://www.arcta.me/sandbox/viz/examples/Scatter.html">Scatter</a>
+* <a href="http://www.arcta.me/sandbox/viz/examples/Line.html">Timeseries</a>
+* <a href="http://www.arcta.me/sandbox/viz/examples/Area.html">Area</a>
+* <a href="http://www.arcta.me/sandbox/viz/examples/3D.html">Interactive 3D-view</a>
 
 
 ```python
